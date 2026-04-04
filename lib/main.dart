@@ -31,8 +31,8 @@ class _ChatScreenState extends State<ChatScreen> {
   bool _isLoading = false;
 
   // Change this to your backend URL
-  final String _backendUrl = 'http://192.168.101.7:8000/chat';  // Android emulator
-  // For iOS simulator: 'http://localhost:8000/chat'
+  final String _backendUrl = 'http://localhost:8000/chat'; // Chrome emulator
+  //final String _backendUrl = 'http://192.168.101.7:8000/chat';  // Android device (use PC's IPv4 Address :8000)
 
   Future<void> _sendMessage() async {
     final userMessage = _controller.text.trim();
