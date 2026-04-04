@@ -50,7 +50,7 @@ async def chat(request: ChatRequest):
                     "prompt": request.message,
                     "stream": False,
                     "options": {
-                        "num_predict": 150,
+                        "num_predict": 350,
                         "temperature": 0.7
                     }
                 }
