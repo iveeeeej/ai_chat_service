@@ -179,21 +179,18 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: const Text(
+        title: Text(
           'AI Chat Service',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            color: Colors.grey[700],
+            fontWeight: FontWeight.bold,
+          ),
         ),
         backgroundColor: Colors.white,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh, color: Colors.blue),
-            onPressed: _loadChatHistory,
-            tooltip: 'Refresh history',
-          ),
-        ],
       ),
       // Sidebar (Drawer)
       drawer: Drawer(
+        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
             topRight: Radius.circular(1),
@@ -205,12 +202,15 @@ class _ChatScreenState extends State<ChatScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: Text(
-                  'Chat History',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    'Chat History',
+                    style: TextStyle(
+                      color: Colors.grey[700],
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -251,11 +251,40 @@ class _ChatScreenState extends State<ChatScreen> {
                 leading: const Icon(Icons.delete, color: Colors.red),
                 title: const Text(
                   'Clear',
-                  style: TextStyle(fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                    color: Colors.red,
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 onTap: () {
-                  Navigator.pop(context);
-                  _clearHistory();
+                  Navigator.pop(context); // close drawer
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      backgroundColor: Colors.white,
+                      title: const Text('Clear History'),
+                      content: const Text(
+                        'Are you sure you want to delete all messages?',
+                      ),
+                      actions: [
+                        TextButton(
+                          onPressed: () => Navigator.pop(context),
+                          child: const Text('Cancel'),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context); // close dialog
+                            _clearHistory();
+                          },
+                          child: const Text(
+                            'Clear',
+                            style: TextStyle(color: Colors.red),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
                 },
               ),
             ],

@@ -86,6 +86,12 @@ async def get_history(limit: int = 20):
         msg["_id"] = str(msg["_id"])
     return {"messages": messages}
 
+@app.delete("/history")
+async def clear_history():
+    """Delete all messages from MongoDB"""
+    result = await collection.delete_many({})
+    return {"deleted_count": result.deleted_count}
+
 @app.get("/")
 def root():
     return {"message": "AI Chat Assistant is running with Ollama + MongoDB"}
