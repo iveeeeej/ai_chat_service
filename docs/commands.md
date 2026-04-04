@@ -8,6 +8,6 @@ Expected response:
 
 Testing API (with curl)
 in CMD:
-curl -X POST http://localhost:8000/chat -H "Content-Type: application/json" -d "{\"message\": \"What is Flutter?\"}"
+curl -X POST http://localhost:8000/chat -H "Content-Type: application/json" -d "{\"message\": \"What is pain?\"}"
 in Powershell:
-Invoke-RestMethod -Uri http://localhost:8000/chat -Method Post -ContentType "application/json" -Body '{"message":"What is Flutter?"}'
+Invoke-RestMethod -Uri http://localhost:8000/chat -Method Post -ContentType "application/json" -Body '{"message":"What is pain?"}'
