@@ -19,7 +19,7 @@ app.add_middleware(
 # MongoDB connection
 MONGO_URL = "mongodb://localhost:27017"
 client = AsyncIOMotorClient(MONGO_URL)
-db = client["chat_db"]
+db = client["chat_db"] # database name
 collection = db["messages"]
 
 class ChatRequest(BaseModel):
